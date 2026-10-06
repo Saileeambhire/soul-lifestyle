@@ -11,28 +11,20 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    // Check prefers-reduced-motion
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
     gsap.registerPlugin(ScrollTrigger);
 
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion) {
       ScrollTrigger.refresh();
       return;
     }
 
     const lenis = new Lenis({
-      duration: 1.3,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: "vertical",
-      gestureOrientation: "vertical",
+      lerp: 0.08,
       smoothWheel: true,
-      wheelMultiplier: 0.95,
-      touchMultiplier: 1.2,
     });
     lenisRef.current = lenis;
 
-    // Synchronize Lenis with ScrollTrigger
     const onScroll = () => {
       ScrollTrigger.update();
     };
@@ -45,16 +37,22 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     gsap.ticker.add(updateTicker);
     gsap.ticker.lagSmoothing(0);
 
-    // Safe refresh after fonts & images settle
-    const refreshTimer = setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 400);
+    // Call ScrollTrigger.refresh() after fonts & load
+    if (document.fonts) {
+      document.fonts.ready.then(() => {
+        ScrollTrigger.refresh();
+      });
+    }
 
     const handleLoad = () => {
       ScrollTrigger.refresh();
     };
     window.addEventListener("load", handleLoad);
     window.addEventListener("resize", handleLoad);
+
+    const refreshTimer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 500);
 
     return () => {
       clearTimeout(refreshTimer);

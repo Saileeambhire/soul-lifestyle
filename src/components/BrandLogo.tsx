@@ -7,23 +7,26 @@ interface BrandLogoProps {
   variant?: "full" | "minimal" | "stacked" | "monogram";
   className?: string;
   light?: boolean;
-  size?: "sm" | "md" | "lg" | "xl";
 }
 
 export default function BrandLogo({
   variant = "full",
   className = "",
-  light = false,
 }: BrandLogoProps) {
   if (variant === "monogram") {
     return (
-      <div className={`relative w-16 h-16 sm:w-20 sm:h-20 ${className}`}>
+      <div
+        className={`relative w-16 h-16 sm:w-20 sm:h-20 ${className}`}
+        style={{ mixBlendMode: "multiply" }}
+      >
         <Image
           src="/images/logo.png"
           alt="The Soul Lifestyle Monogram"
           fill
           priority
-          className="object-contain mix-blend-multiply transition-transform duration-500 hover:scale-105"
+          sizes="80px"
+          style={{ mixBlendMode: "multiply" }}
+          className="object-contain transition-transform duration-500 hover:scale-105"
         />
       </div>
     );
@@ -31,14 +34,18 @@ export default function BrandLogo({
 
   if (variant === "stacked") {
     return (
-      <div className={`relative w-[220px] h-[130px] sm:w-[280px] sm:h-[160px] ${className}`}>
+      <div
+        className={`relative w-[220px] h-[130px] sm:w-[260px] sm:h-[150px] ${className}`}
+        style={{ mixBlendMode: "multiply" }}
+      >
         <Image
           src="/images/logo.png"
           alt="The Soul Lifestyle Official Brand Logo"
           fill
           priority
-          sizes="(max-width: 768px) 220px, 280px"
-          className="object-contain mix-blend-multiply transition-transform duration-700 hover:scale-102"
+          sizes="(max-width: 768px) 220px, 260px"
+          style={{ mixBlendMode: "multiply" }}
+          className="object-contain transition-transform duration-700 hover:scale-[1.02]"
         />
       </div>
     );
@@ -46,28 +53,36 @@ export default function BrandLogo({
 
   if (variant === "minimal") {
     return (
-      <div className={`relative w-[150px] h-[75px] sm:w-[180px] sm:h-[90px] ${className}`}>
+      <div
+        className={`relative w-[150px] h-[75px] sm:w-[180px] sm:h-[90px] ${className}`}
+        style={{ mixBlendMode: "multiply" }}
+      >
         <Image
           src="/images/logo.png"
           alt="The Soul Lifestyle Logo"
           fill
           priority
           sizes="180px"
-          className="object-contain mix-blend-multiply"
+          style={{ mixBlendMode: "multiply" }}
+          className="object-contain"
         />
       </div>
     );
   }
 
   return (
-    <div className={`relative w-[160px] h-[80px] sm:w-[200px] sm:h-[100px] ${className}`}>
+    <div
+      className={`relative w-[150px] h-[75px] sm:w-[190px] sm:h-[95px] ${className}`}
+      style={{ mixBlendMode: "multiply" }}
+    >
       <Image
         src="/images/logo.png"
         alt="The Soul Lifestyle French Fragrance Collection"
         fill
         priority
-        sizes="200px"
-        className="object-contain mix-blend-multiply transition-opacity duration-300 hover:opacity-90"
+        sizes="190px"
+        style={{ mixBlendMode: "multiply" }}
+        className="object-contain transition-opacity duration-300 hover:opacity-90"
       />
     </div>
   );

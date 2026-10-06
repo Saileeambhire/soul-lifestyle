@@ -35,6 +35,13 @@ export default function Reveal({
       return;
     }
 
+    // Safety timeout: ensure element is never permanently hidden if scroll doesn't reach it
+    const safetyTimer = setTimeout(() => {
+      if (el) {
+        gsap.to(el, { opacity: 1, y: 0, filter: "none", duration: 0.4 });
+      }
+    }, 4500);
+
     const anim = gsap.fromTo(
       el,
       {
@@ -51,13 +58,15 @@ export default function Reveal({
         ease: "power3.out",
         scrollTrigger: {
           trigger: el,
-          start: "top 85%",
+          start: "top 88%",
           toggleActions: "play none none none",
+          onEnter: () => clearTimeout(safetyTimer),
         },
       }
     );
 
     return () => {
+      clearTimeout(safetyTimer);
       anim.kill();
     };
   }, [delay, duration, y, blur]);

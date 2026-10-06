@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export default function CustomCursor() {
@@ -87,7 +87,7 @@ export default function CustomCursor() {
         transition={{ duration: 0.2 }}
       />
 
-      {/* Lerp-Smoothed Trailing Ring */}
+      {/* Lerp-Smoothed Trailing Ring (using numeric rgba for valid Framer Motion interpolations) */}
       <motion.div
         className="pointer-events-none fixed top-0 left-0 z-[998] rounded-full border border-[#B8862B]/50 custom-cursor-element"
         style={{
@@ -101,7 +101,7 @@ export default function CustomCursor() {
         animate={{
           scale: isHovered ? 1.7 : 1,
           borderColor: isHovered ? "rgba(184, 134, 43, 0.85)" : "rgba(184, 134, 43, 0.4)",
-          backgroundColor: isHovered ? "rgba(184, 134, 43, 0.08)" : "transparent",
+          backgroundColor: isHovered ? "rgba(184, 134, 43, 0.08)" : "rgba(184, 134, 43, 0)",
         }}
         transition={{ duration: 0.25 }}
       />

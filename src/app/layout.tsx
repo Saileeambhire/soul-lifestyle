@@ -35,6 +35,7 @@ const pinyon = Pinyon_Script({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("http://localhost:3000"),
   title: "THE SOUL LIFESTYLE | Wear Your Soul — French Fragrance Collection",
   description:
     "A luxury French fragrance collection created to express your individuality. Minimal, elegant, timeless haute perfumery crafted in Paris.",
@@ -75,7 +76,7 @@ export default function RootLayout({
       lang="en"
       className={`${cormorant.variable} ${bodoni.variable} ${inter.variable} ${pinyon.variable}`}
     >
-      <body className="bg-[#F8F4EC] text-[#29251F] font-sans antialiased selection:bg-[#B8862B]/20 selection:text-[#7A5515] overflow-x-hidden">
+      <body className="bg-[#F8F4EC] text-[#29251F] font-sans antialiased selection:bg-[#B8862B]/20 selection:text-[#7A5515]">
         <ScrollProgress />
         <SmoothScroll>{children}</SmoothScroll>
       </body>

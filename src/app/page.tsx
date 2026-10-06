@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
@@ -62,7 +61,7 @@ export default function Home() {
   const totalItemsCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
-    <SmoothScroll>
+    <>
       <CustomCursor />
 
       {/* Floating Header */}
@@ -72,12 +71,14 @@ export default function Home() {
       />
 
       {/* Main Page Sections */}
-      <main className="w-full relative bg-[#F8F4EC]">
+      <main className="w-full relative bg-[#F8F4EC] overflow-x-clip">
         {/* Hero Section */}
-        <Hero onDiscoverClick={() => {
-          const collectionElem = document.getElementById("collection");
-          collectionElem?.scrollIntoView({ behavior: "smooth" });
-        }} />
+        <Hero
+          onDiscoverClick={() => {
+            const collectionElem = document.getElementById("collection");
+            collectionElem?.scrollIntoView({ behavior: "smooth" });
+          }}
+        />
 
         {/* Section 2: The Art of Fragrance */}
         <FragranceIntro />
@@ -89,10 +90,12 @@ export default function Home() {
         <FragranceNotes />
 
         {/* Section 5: Find Your Soul (Personality Quiz) */}
-        <FindYourSoul onSelectProduct={(prod) => {
-          const collectionElem = document.getElementById("collection");
-          collectionElem?.scrollIntoView({ behavior: "smooth" });
-        }} />
+        <FindYourSoul
+          onSelectProduct={() => {
+            const collectionElem = document.getElementById("collection");
+            collectionElem?.scrollIntoView({ behavior: "smooth" });
+          }}
+        />
 
         {/* Section 6: Fragrance Journey */}
         <FragranceJourney />
@@ -104,10 +107,12 @@ export default function Home() {
         <Editorial />
 
         {/* Section 9: Wear Your Soul Climax */}
-        <FinalCTA onDiscoverClick={() => {
-          const collectionElem = document.getElementById("collection");
-          collectionElem?.scrollIntoView({ behavior: "smooth" });
-        }} />
+        <FinalCTA
+          onDiscoverClick={() => {
+            const collectionElem = document.getElementById("collection");
+            collectionElem?.scrollIntoView({ behavior: "smooth" });
+          }}
+        />
       </main>
 
       {/* Luxury Footer */}
@@ -121,6 +126,6 @@ export default function Home() {
         onUpdateQuantity={handleUpdateQuantity}
         onRemoveItem={handleRemoveItem}
       />
-    </SmoothScroll>
+    </>
   );
 }
