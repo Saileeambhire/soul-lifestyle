@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: var(--font-cormorant), var(--font-bodoni), Georgia, serif;
+  --font-bodoni: var(--font-bodoni), Georgia, serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-script: var(--font-pinyon), cursive;
+
+  --color-luxury-bg: #F8F4EC;
+  --color-luxury-bg-alt: #EFE7D8;
+  --color-luxury-gold: #B8862B;
+  --color-luxury-gold-dark: #7A5515;
+  --color-luxury-gold-soft: #D6B56A;
+  --color-luxury-gold-light: #F3E8D0;
+  --color-luxury-text: #29251F;
+}
+
+:root {
+  --bg-main: #F8F4EC;
+  --bg-alt: #EFE7D8;
+  --gold: #B8862B;
+  --gold-dark: #7A5515;
+  --gold-soft: #D6B56A;
+  --text-dark: #29251F;
+  --white: #FFFFFF;
+}
+
+/* Custom Luxury Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F8F4EC;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D6B56A;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #B8862B;
+}
+
+/* Gold Gradient Text */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #B8862B 0%, #D6B56A 50%, #7A5515 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Subtle Shimmer Effect */
+.gold-shimmer {
+  background: linear-gradient(90deg, #B8862B 0%, #F3E8D0 50%, #B8862B 100%);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Glassmorphism Luxury Header */
+.glass-header {
+  background: rgba(248, 244, 236, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(184, 134, 43, 0.18);
+}
+
+/* Luxury Circle Draw */
+.gold-circle-draw {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawCircle 2.5s ease-out forwards;
+}
+
+@keyframes drawCircle {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Floating Animation */
+@keyframes subtleFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(0.5deg);
+  }
+}
+
+.animate-float {
+  animation: subtleFloat 6s ease-in-out infinite;
+}
+
+/* Hide cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .custom-cursor-element {
+    display: none !important;
+  }
+}
+
+/* Utility to disable scrollbar in horizontal scroll containers */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
